@@ -1,7 +1,9 @@
 package lambda_functional_programming01;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Fp01 {
     public static void main(String[] args) {
@@ -41,9 +43,13 @@ public class Fp01 {
         tekrarsizTekElemanlarinKupleriniYazdir(liste);
         System.out.println();
         tekrarsizCiftElemanlarinKareToplami(liste);
-
-
-
+        tekrarsizCiftElemanlarinKupleriCarpimi(liste);
+        getMaxElement1(liste);
+        getMaxElement2(liste);
+        getOverSevenMin(liste);
+        getOverSevenMin2(liste);
+        getOverSevenMin3(liste);
+        getReverseOrderUniqueHalfOfElements(liste);
 
     }
 
@@ -93,6 +99,72 @@ public class Fp01 {
         int toplam=list.stream().distinct().filter(t-> t%2==0).map(t-> t*t).reduce(0,(t,u)-> t+u);
         System.out.println(toplam);
     }
+    // Tekrarsız çift elemanların küpünün çarpımını
+    // hesaplayan bir method oluşturun.
 
+    public static void tekrarsizCiftElemanlarinKupleriCarpimi(List<Integer> list) {
+        Integer carpim=list.stream().distinct().filter(t-> t%2==0).map(t-> t*t*t).reduce(1,(t, u)-> t*u);
+        System.out.println(carpim);
+    }
 
+    //List elemanları
+    // arasından en büyük değeri bulan bir method oluşturun.
+    //1.yol
+    public static void getMaxElement1(List<Integer> list) {
+       int max= list.stream().distinct().reduce(Integer.MIN_VALUE,(t,u) -> t>u ? t : u);
+       System.out.println(max);
+
+    }
+
+    //2.yol
+    public static void getMaxElement2(List<Integer> list) {
+        int max=list.stream().distinct().sorted().reduce(Integer.MIN_VALUE,(t,u)->u);
+        System.out.println("Maksimum deger : "+max);
+
+    }
+
+    //8)List elemanları arasından
+    // en küçük değeri bulan bir method oluşturun.(2 Yol ile)
+
+    //9) List elemanları arasından 7'den büyük, çift,
+    // en küçük değeri bulan bir method oluşturun.
+    //1.yol
+    public static void getOverSevenMin(List<Integer> list){
+       int min= list.stream().distinct().filter(t-> t%2==0).filter(t-> t>7).
+        reduce(Integer.MAX_VALUE, (t,u)-> t<u ? t : u);
+        System.out.println(min);
+    }
+
+    //2.yol
+    public static void getOverSevenMin2 (List<Integer> list) {
+       int min=list.stream().distinct().filter(t-> t%2==0).filter(t-> t>7).sorted(Comparator.reverseOrder()).reduce(Integer.MAX_VALUE, (t,u)-> u);
+        System.out.println("Minimum deger : "+min);
+    }
+
+    //3.yol
+
+    public static void getOverSevenMin3(List<Integer> list) {
+        int min=list.stream().
+                filter(t-> t%2==0).
+                filter(t-> t>7).
+                sorted().
+                findFirst().
+                get();
+        System.out.println(min);
+
+    }
+
+    //10) Ters sıralama ile tekrarsız ve 5'ten büyük
+    // elemanların yarı değerlerini
+    // (elamanın ikiye bölüm sonucunu) bulan bir method oluşturun.
+
+    public static void getReverseOrderUniqueHalfOfElements(List<Integer> list) {
+        List<Double> sonuc=list.stream().
+        distinct().
+        filter(t-> t>5).
+        map(t-> t/2.0).
+        sorted(Comparator.reverseOrder()).
+        collect(Collectors.toList());
+        System.out.println(sonuc);
+    }
 }
