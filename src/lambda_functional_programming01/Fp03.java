@@ -3,7 +3,6 @@ package lambda_functional_programming01;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Fp03 {
     public static void main(String[] args) {
@@ -31,8 +30,10 @@ public class Fp03 {
         System.out.println();
         uzunlukVeIlkHarfeGoreSiralaYazdir(l);
         System.out.println();
-        uzunlugu8ile10ArasiveOIleBitenleriSil(l);
-
+        //uzunlugu8ile10ArasiveOIleBitenleriSil(l);
+        System.out.println("Uzunlugu 12'den az mi : "+uzunlugu12denAzMi(l));
+        System.out.println("Hepsi X ile baslamiyor mu : "+xIleBaslamiyorMu(l));
+        System.out.println("R ile biten var mi : "+rIleBitenVarMi(l));
 
 
 
@@ -136,4 +137,24 @@ public class Fp03 {
         list.removeIf(t-> (t.length()>7 && t.length()<11) || t.endsWith("o"));
         System.out.println(list);
     }
+//9) Tüm elemanların uzunluklarının 12'den az olup
+// olmadığını kontrol eden bir method oluşturun.
+
+    public static boolean uzunlugu12denAzMi(List<String> list) {
+        return list.stream().allMatch(t-> t.length()<12);
+    }
+//10) Hiçbir elemanın 'X' ile başlamadığını
+// kontrol eden bir method oluşturun.
+
+    public static boolean xIleBaslamiyorMu(List<String> list) {
+        return list.stream().noneMatch(t-> t.startsWith("X"));
+    }
+
+    //11) Herhangi bir elemanın 'r' ile bitip bitmediğini
+    // kontrol eden bir method oluşturun.
+
+    public static boolean rIleBitenVarMi(List<String> list) {
+        return list.stream().anyMatch(t-> t.endsWith("r"));
+    }
+
 }
