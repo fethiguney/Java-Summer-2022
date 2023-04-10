@@ -11,6 +11,7 @@ public class C07_Sort {
         //sirali hale getirebiliriz
 
         Arrays.sort(sayilar);
+
         System.out.println(Arrays.toString(sayilar));// [1, 3, 4, 5, 6, 7, 9]
 
 

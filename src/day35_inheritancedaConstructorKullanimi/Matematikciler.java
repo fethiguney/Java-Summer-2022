@@ -3,6 +3,7 @@ package day35_inheritancedaConstructorKullanimi;
 public class Matematikciler extends LOgretmen{
     Matematikciler () {
 
+
         System.out.println("Matematikciler parametresiz cons");
     }
 
