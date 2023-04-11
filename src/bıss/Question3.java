@@ -3,7 +3,7 @@ package bıss;
 public class Question3 {
 
     public static void main(String[] args) {
-        int[] input = {-3, 34, 4, 12, 5, 2};
+        int[] input = {3, 34, 4, 12, 5, 2};
         int sum = 9;
 
         if (isSubsetSum(input, sum)) {
