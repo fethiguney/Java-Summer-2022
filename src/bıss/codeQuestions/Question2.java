@@ -1,4 +1,4 @@
-package bıss;
+package bıss.codeQuestions;
 
 
 public class Question2 {

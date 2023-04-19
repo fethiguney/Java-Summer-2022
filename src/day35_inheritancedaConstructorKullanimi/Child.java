@@ -24,6 +24,8 @@ public class Child extends BParent {
         Child child1=new Child();
       child1.grandPaKlupAdi="Child1";
       child1.parentKlubAdi="Child2";
+
+
         /* Output
         GrandPa constructor calisti
          Parent constructor calisti
